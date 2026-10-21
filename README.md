@@ -1,4 +1,4 @@
-# URBAN STORE
+# URBAN STORE 2.0
 
 Tienda ficticia de ropa urbana creada con HTML, CSS y JavaScript puro, sin dependencias de ejecución ni pasos de compilación. Proyecto educativo: no realiza pedidos ni procesa pagos.
 
@@ -52,3 +52,14 @@ Para ver el sitio completo:
 Si lo abrís desde el servidor y todavía ves una versión antigua, probá una recarga forzada con Ctrl+Shift+R (Cmd+Shift+R en Mac). En las herramientas de desarrollador del navegador, la pestaña Red / Network permite comprobar si `styles.css`, `script.js` y las imágenes se cargan correctamente.
 
 Se verificó la carga de CSS, la ejecución de JavaScript y las siete imágenes de la página en Chromium mediante un servidor HTTP. La apertura directa con file:// no pudo comprobarse porque la política del navegador del entorno la bloquea (ERR_BLOCKED_BY_ADMINISTRATOR). Esta comprobación no incluye la vista previa interna de Codex.
+
+
+## Rediseño 2.0
+
+Se conserva la aplicación original y sus seis productos, categorías, precios e identificadores del carrito. El catálogo incorpora imágenes más grandes, numeración editorial, botones de al menos 44 px de alto, filtros redondeados, mayor espacio y tipografía más clara. La paleta es blanca, negra y gris; las ilustraciones originales se muestran en escala de grises mediante CSS. No se agregaron pagos ni envíos, dependencias ni fuentes externas.
+
+**Fotografías pendientes:** la política de red del entorno respondió con 403 al intentar acceder a Pexels, Unsplash y Wikimedia. No se descargaron fotografías ni se sustituyeron los SVG. Para completar este punto, se necesita acceso a una fuente de fotografías y su licencia, o imágenes propias con autorización. Antes de incorporarlas se deben verificar pertinencia, licencia y atribución, y guardar su procedencia. Las ilustraciones locales siguen funcionando sin conexiones externas.
+
+Para revisar el diseño, abrí la carpeta completa en VS Code y ejecutá **Open with Live Server** sobre `index.html`, o utilizá el servidor Python indicado arriba. Revisá la sección Colección tanto en escritorio como en modo celular y probá los filtros y el carrito. Si ves una versión anterior, realizá una recarga forzada.
+
+Validación de 2.0 en Chromium: seis productos, todos los filtros, agregar, aumentar, reducir y eliminar unidades, totales, persistencia al recargar, carrito vacío, cierre con Escape y recuperación de almacenamiento corrupto. Se verificaron todos los recursos sin errores HTTP ni JavaScript y ausencia de desbordamiento horizontal en 320, 360, 390, 768, 1024 y 1440 px. Se respeta la preferencia de movimiento reducido.

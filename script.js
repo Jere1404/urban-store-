@@ -35,10 +35,10 @@ function notify(message) {
 function renderProducts(category = 'Todos') {
   const visible = products.filter(product => category === 'Todos' || product.category === category);
   catalog.innerHTML = visible.map(product => `
-    <article class="product">
-      <div class="product-image"><img src="${product.image}" alt="${product.name}" width="480" height="528" loading="lazy">${product.tag ? `<span class="product-tag">${product.tag}</span>` : ''}</div>
+    <article class="product" aria-label="${product.name}">
+      <div class="product-image"><span class="product-number" aria-hidden="true">URBN / ${String(products.indexOf(product) + 1).padStart(2, '0')}</span><img src="${product.image}" alt="${product.name}" width="480" height="528" loading="lazy" decoding="async">${product.tag ? `<span class="product-tag">${product.tag}</span>` : ''}</div>
       <div class="product-details"><div><p class="product-category">${product.category}</p><h3>${product.name}</h3></div><span class="product-price">${money(product.price)}</span></div>
-      <button class="add-button" data-add="${product.id}" aria-label="Agregar ${product.name} al carrito">Agregar al carrito <span aria-hidden="true">+</span></button>
+      <button class="add-button" data-add="${product.id}" aria-label="Agregar ${product.name} al carrito">Agregar al carrito <span class="add-icon" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button>
     </article>`).join('');
   document.querySelector('#product-count').textContent = `${String(visible.length).padStart(2, '0')} PRODUCTOS`;
 }
