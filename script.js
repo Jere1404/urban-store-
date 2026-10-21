@@ -7,6 +7,14 @@ const products = [
   { id: 'cap', name: 'Gorra Urban Signature', category: 'Accesorios', price: 22, image: 'assets/gorra.svg', tag: '' },
   { id: 'bag', name: 'Bandolera Daily', category: 'Accesorios', price: 35, image: 'assets/bandolera.svg', tag: 'ESENCIAL' }
 ];
+const descriptions = {
+  'tee-black': 'Una remera negra de silueta relajada. La base de un look urbano que podés combinar con cargos, buzos y tus accesorios favoritos.',
+  hoodie: 'El hoodie verde que suma carácter a tus combinaciones de todos los días. Una pieza protagonista para llevar con básicos y siluetas amplias.',
+  cargo: 'Bolsillos cargo y una silueta urbana de líneas relajadas. Un pantalón para armar tu propio uniforme con remeras y buzos.',
+  'tee-white': 'Una remera blanca de silueta boxy y estética limpia. Un esencial para combinar a tu manera, solo o en capas.',
+  cap: 'La gorra que completa el conjunto. Un accesorio de estética minimalista para sumar un detalle urbano a tus looks.',
+  bag: 'Una bandolera de líneas simples para completar tu look. Un accesorio con identidad propia dentro de la colección Daily.'
+};
 const currency = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'USD', currencyDisplay: 'code' });
 const money = value => currency.format(value);
 const storageKey = 'urban-store-cart-v1';
@@ -24,6 +32,7 @@ try {
 } catch { cart = []; }
 const catalog = document.querySelector('#products');
 const dialog = document.querySelector('#cart');
+const quickView = document.querySelector('#quick-view');
 const toast = document.querySelector('#toast');
 let toastTimer;
 function notify(message) {
@@ -36,9 +45,14 @@ function renderProducts(category = 'Todos') {
   const visible = products.filter(product => category === 'Todos' || product.category === category);
   catalog.innerHTML = visible.map(product => `
     <article class="product" aria-label="${product.name}">
-      <div class="product-image"><span class="product-number" aria-hidden="true">URBN / ${String(products.indexOf(product) + 1).padStart(2, '0')}</span><img src="${product.image}" alt="${product.name}" width="480" height="528" loading="lazy" decoding="async">${product.tag ? `<span class="product-tag">${product.tag}</span>` : ''}</div>
-      <div class="product-details"><div><p class="product-category">${product.category}</p><h3>${product.name}</h3></div><span class="product-price">${money(product.price)}</span></div>
-      <button class="add-button" data-add="${product.id}" aria-label="Agregar ${product.name} al carrito">Agregar al carrito <span class="add-icon" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button>
+      <div class="product-image">
+        <span class="product-number" aria-hidden="true">${String(products.indexOf(product) + 1).padStart(2, '0')} / URBN</span>
+        <img src="${product.image}" alt="${product.name}" width="480" height="528" loading="lazy" decoding="async">
+        ${product.tag ? `<span class="product-tag">${product.tag}</span>` : ''}
+        <button class="quick-button" data-quick="${product.id}" aria-label="Vista rápida de ${product.name}" aria-haspopup="dialog" aria-controls="quick-view">Vista rápida <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button>
+      </div>
+      <div class="product-details"><p class="product-category">${product.category}</p><h3>${product.name}</h3><span class="product-price">${money(product.price)}</span></div>
+      <button class="add-button" data-add="${product.id}" aria-label="Agregar ${product.name} al carrito">Agregar al carrito <span aria-hidden="true">+</span></button>
     </article>`).join('');
   document.querySelector('#product-count').textContent = `${String(visible.length).padStart(2, '0')} PRODUCTOS`;
 }
@@ -62,16 +76,56 @@ document.querySelectorAll('.filter').forEach(button => button.addEventListener('
   });
   renderProducts(button.dataset.category);
 }));
-catalog.addEventListener('click', event => {
-  const button = event.target.closest('[data-add]');
-  if (!button) return;
-  const product = products.find(product => product.id === button.dataset.add);
+function addToCart(id) {
+  const product = products.find(product => product.id === id);
+  if (!product) return false;
   const existing = cart.find(item => item.id === product.id);
-  if (existing && existing.quantity >= 99) return notify('Máximo de 99 unidades por producto.');
+  if (existing && existing.quantity >= 99) {
+    notify('Máximo de 99 unidades por producto.');
+    return false;
+  }
   if (existing) existing.quantity += 1;
   else cart.push({ id: product.id, quantity: 1 });
   renderCart();
   notify(`${product.name} se agregó al carrito`);
+  return true;
+}
+function syncModalState() {
+  document.body.classList.toggle('cart-open', Boolean(document.querySelector('dialog[open]')));
+}
+function openQuickView(id) {
+  const product = products.find(product => product.id === id);
+  if (!product) return;
+  const image = document.querySelector('#quick-image');
+  image.src = product.image;
+  image.alt = product.name;
+  document.querySelector('#quick-title').textContent = product.name;
+  document.querySelector('#quick-category').textContent = product.category;
+  document.querySelector('#quick-price').textContent = money(product.price);
+  document.querySelector('#quick-description').textContent = descriptions[id];
+  document.querySelector('#quick-add').dataset.add = id;
+  document.querySelector('#quick-status').textContent = '';
+  quickView.showModal();
+  syncModalState();
+}
+catalog.addEventListener('click', event => {
+  const quickButton = event.target.closest('[data-quick]');
+  if (quickButton) return openQuickView(quickButton.dataset.quick);
+  const button = event.target.closest('[data-add]');
+  if (button) addToCart(button.dataset.add);
+});
+document.querySelector('#quick-add').addEventListener('click', event => {
+  const added = addToCart(event.currentTarget.dataset.add);
+  document.querySelector('#quick-status').textContent = added
+    ? 'Agregado al carrito. Seguí explorando a tu manera.' : 'Máximo de 99 unidades por producto.';
+});
+document.querySelector('#close-quick').addEventListener('click', () => quickView.close());
+quickView.addEventListener('close', syncModalState);
+quickView.addEventListener('click', event => { if (event.target === quickView) quickView.close(); });
+document.querySelector('#quick-cart').addEventListener('click', () => {
+  quickView.close();
+  dialog.showModal();
+  syncModalState();
 });
 document.querySelector('#cart-items').addEventListener('click', event => {
   const button = event.target.closest('[data-action]');
@@ -92,11 +146,11 @@ document.querySelector('#cart-items').addEventListener('click', event => {
 function closeCart() { dialog.close(); }
 document.querySelector('#open-cart').addEventListener('click', () => {
   dialog.showModal();
-  document.body.classList.add('cart-open');
+  syncModalState();
 });
 document.querySelector('#close-cart').addEventListener('click', closeCart);
 document.querySelector('#continue-shopping').addEventListener('click', closeCart);
-dialog.addEventListener('close', () => document.body.classList.remove('cart-open'));
+dialog.addEventListener('close', syncModalState);
 dialog.addEventListener('click', event => { if (event.target === dialog) closeCart(); });
 renderProducts();
 renderCart();
