@@ -56,10 +56,19 @@ Se verificó la carga de CSS, la ejecución de JavaScript y las siete imágenes 
 
 ## Rediseño 2.0
 
-Se conserva la aplicación original y sus seis productos, categorías, precios e identificadores del carrito. El catálogo incorpora imágenes más grandes, numeración editorial, botones de al menos 44 px de alto, filtros redondeados, mayor espacio y tipografía más clara. La paleta es blanca, negra y gris; las ilustraciones originales se muestran en escala de grises mediante CSS. No se agregaron pagos ni envíos, dependencias ni fuentes externas.
+Se conserva la aplicación original y sus seis productos, categorías, precios e identificadores del carrito. La portada editorial combina fondo oscuro, tipografía de gran escala y la fotografía existente del pantalón cargo. El catálogo incorpora tarjetas compactas, imágenes completas de proporciones uniformes, numeración editorial, botones de al menos 44 px de alto y filtros rectangulares. La paleta es blanca, negra y gris; las ilustraciones originales se muestran en escala de grises mediante CSS. No se agregaron pagos ni envíos, dependencias ni fuentes externas.
 
 **Fotografías incorporadas desde `main`:** se utilizan los archivos aportados al repositorio `assets/remera negra` (Remera Oversize Essential), `assets/buzo verde` (Buzo Hoodie Core) y `assets/pantalon cargo` (Pantalón Cargo Street). Son archivos JPEG aunque sus nombres no tienen extensión; se conservan sus nombres originales y las rutas codifican los espacios como `%20`. Las fotos mantienen sus colores y se muestran completas con `object-fit: contain`, tanto en el catálogo como en el carrito. La remera blanca, la gorra y la bandolera conservan sus ilustraciones porque no se aportaron fotografías para esos productos. No se eliminó ni modificó ningún archivo de `assets` y no se cambiaron nombres ni precios de productos.
 
 Para revisar el diseño, abrí la carpeta completa en VS Code y ejecutá **Open with Live Server** sobre `index.html`, o utilizá el servidor Python indicado arriba. Revisá la sección Colección tanto en escritorio como en modo celular y probá los filtros y el carrito. Si ves una versión anterior, realizá una recarga forzada.
 
 Validación de 2.0 en Chromium: seis productos, todos los filtros, agregar, aumentar, reducir y eliminar unidades, totales, persistencia al recargar, carrito vacío, cierre con Escape y recuperación de almacenamiento corrupto. Se verificaron todos los recursos sin errores HTTP ni JavaScript y ausencia de desbordamiento horizontal en 320, 360, 390, 768, 1024 y 1440 px. Se respeta la preferencia de movimiento reducido.
+
+
+## Portada editorial y vista rápida
+
+El rediseño se realizó sobre `main` actualizado, conservando los seis productos, nombres, precios e imágenes existentes. No se descargaron fotografías ni se modificó `assets`. El catálogo mantiene en color las tres fotografías reales; las otras tres tarjetas conservan sus SVG. La foto existente del pantalón se reutiliza en blanco y negro en la portada, con el concepto DEFINE YOUR STYLE.
+
+Cada tarjeta tiene un botón **Vista rápida**, visible también en pantallas táctiles. Abre un diálogo con imagen completa, nombre, categoría, precio y descripción; permite agregar al carrito y abrirlo con **Ver carrito**. Se cierra con el botón ×, Escape o un clic en el fondo. El diálogo conserva el foco del teclado y lo devuelve al botón de origen al cerrarse; el fondo no se desplaza mientras está abierto. Se respeta la preferencia de movimiento reducido.
+
+Se comprobaron en Chromium las seis vistas rápidas, contenido, precios, imágenes, agregado al carrito, transición al carrito, cierre, retorno del foco, límite de 99 unidades y uso desde filtros. También se verificaron las funciones existentes del carrito, carga de recursos y diseño sin desbordamiento en 320, 360, 390, 768, 1024 y 1440 px. No hay backend, pagos ni envíos.
