@@ -1,8 +1,8 @@
 // El catálogo: cambiá nombres, precios e imágenes desde esta lista.
 const products = [
-  { id: 'tee-black', name: 'Remera Oversize Essential', category: 'Remeras', price: 28, image: 'assets/remera-negra.svg', tag: 'BEST SELLER' },
-  { id: 'hoodie', name: 'Buzo Hoodie Core', category: 'Buzos', price: 65, image: 'assets/buzo.svg', tag: 'NUEVO' },
-  { id: 'cargo', name: 'Pantalón Cargo Street', category: 'Pantalones', price: 58, image: 'assets/pantalon.svg', tag: '' },
+  { id: 'tee-black', name: 'Remera Oversize Essential', category: 'Remeras', price: 28, image: 'assets/remera%20negra', tag: 'BEST SELLER' },
+  { id: 'hoodie', name: 'Buzo Hoodie Core', category: 'Buzos', price: 65, image: 'assets/buzo%20verde', tag: 'NUEVO' },
+  { id: 'cargo', name: 'Pantalón Cargo Street', category: 'Pantalones', price: 58, image: 'assets/pantalon%20cargo', tag: '' },
   { id: 'tee-white', name: 'Remera Boxy Studio', category: 'Remeras', price: 32, image: 'assets/remera-blanca.svg', tag: 'NUEVO' },
   { id: 'cap', name: 'Gorra Urban Signature', category: 'Accesorios', price: 22, image: 'assets/gorra.svg', tag: '' },
   { id: 'bag', name: 'Bandolera Daily', category: 'Accesorios', price: 35, image: 'assets/bandolera.svg', tag: 'ESENCIAL' }
