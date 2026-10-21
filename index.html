@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="URBAN STORE: una tienda ficticia de ropa urbana. Explorá prendas esenciales y definí tu propio estilo.">
+  <title>URBAN STORE — Definí tu estilo</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="announcement">ESTILO SIN REGLAS. ESENCIA SIN LÍMITES. <span>COLECCIÓN 01 / 2026</span></div>
+  <header class="header">
+    <a class="logo" href="#" aria-label="URBAN STORE, inicio">URBAN<span>STORE®</span></a>
+    <nav aria-label="Navegación principal">
+      <a href="#coleccion">Colección</a><a href="#categorias">Categorías</a><a href="#nosotros">Nosotros</a>
+    </nav>
+    <button class="cart-trigger" id="open-cart" aria-label="Abrir carrito, 0 productos" aria-controls="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><span class="cart-label">Carrito</span><span id="cart-count">0</span></button>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span class="dot"></span> NUEVA TEMPORADA / VOL. 01</p><h1 id="hero-title">DEFINE<br>YOUR <em>STYLE.</em></h1><p class="hero-subtitle">Descubrí nuestra nueva colección</p><p class="hero-description">Prendas esenciales. Actitud propia.<br>Hechas para acompañar tu ritmo.</p><a class="button" href="#coleccion">Explorar colección <span aria-hidden="true">↗</span></a><div class="hero-bottom"><span>DISEÑADO PARA LA CALLE</span><span>↓ SCROLL PARA DESCUBRIR</span></div></div>
+      <div class="hero-art"><img src="assets/hero.svg" alt="Ilustración editorial de moda urbana: figura con buzo oversize y pantalón amplio en un entorno arquitectónico"><span class="art-label">URBAN ESSENTIALS</span><span class="art-number">01 — 06</span><div class="art-caption">MENOS RUIDO.<br>MÁS IDENTIDAD.</div></div>
+    </section>
+    <div class="manifesto" aria-label="Nuestra inspiración"><span>STREET CULTURE</span><span aria-hidden="true">✳</span><span>EVERYDAY ESSENTIALS</span><span aria-hidden="true">✳</span><span>YOUR OWN WAY</span><span aria-hidden="true">✳</span><span>URBAN STORE</span></div>
+    <section class="collection section" id="coleccion" aria-labelledby="collection-title">
+      <div class="section-heading"><div><p class="eyebrow">EL NUEVO UNIFORME URBANO</p><h2 id="collection-title">Esenciales con carácter<span>.</span></h2></div><p>Tu próximo favorito está acá.<br>Siluetas relajadas, estilo que perdura.</p></div>
+      <div class="catalog-toolbar"><div class="filters" id="categorias" role="group" aria-label="Filtrar por categoría"><button class="filter active" data-category="Todos" aria-pressed="true">Todos</button><button class="filter" data-category="Remeras" aria-pressed="false">Remeras</button><button class="filter" data-category="Buzos" aria-pressed="false">Buzos</button><button class="filter" data-category="Pantalones" aria-pressed="false">Pantalones</button><button class="filter" data-category="Accesorios" aria-pressed="false">Accesorios</button></div><span id="product-count">06 PRODUCTOS</span></div>
+      <div class="product-grid" id="products"></div>
+      <noscript><p>Activá JavaScript para ver el catálogo y utilizar el carrito.</p></noscript>
+    </section>
+    <section class="about section" id="nosotros"><div><p class="eyebrow">MÁS QUE ROPA, UNA ACTITUD</p><h2>La calle inspira.<br>Vos le das identidad.</h2></div><div><p>Creemos en vestir como sos. Sin etiquetas, sin complicaciones. URBAN STORE reúne siluetas cómodas y una mirada contemporánea para que hagas tuyo cada día.</p><span class="about-note">TIENDA FICTICIA · PROYECTO DE APRENDIZAJE</span></div></section>
+    <section class="values" aria-label="Nuestros valores"><div><span>01 /</span><h3>Diseño atemporal</h3><p>Esenciales que van con todo.</p></div><div><span>02 /</span><h3>Comodidad cotidiana</h3><p>Libertad para moverte a tu manera.</p></div><div><span>03 /</span><h3>Actitud urbana</h3><p>Tu estilo, tus propias reglas.</p></div></section>
+  </main>
+  <footer class="footer"><div class="footer-top"><a class="logo" href="#">URBAN<span>STORE®</span></a><p>Tu ciudad. Tu ritmo. Tu estilo.</p><div><p class="footer-label">HABLEMOS</p><a href="mailto:hola@urbanstore.example">hola@urbanstore.example</a><p>Ciudad Ficticia · Universo Urbano</p></div><div><p class="footer-label">ENCONTRANOS</p><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok ↗</a><small>Enlaces generales de demostración.</small></div></div><div class="footer-bottom"><span>© 2026 URBAN STORE · Proyecto ficticio.</span><span>Sin ventas ni pagos reales. Precios en USD.</span><a href="#">Volver arriba ↑</a></div></footer>
+  <dialog id="cart" aria-labelledby="cart-title"><div class="cart-panel"><div class="cart-header"><div><p class="eyebrow">TUS ELEGIDOS</p><h2 id="cart-title">Tu carrito</h2></div><button class="icon-button" id="close-cart" aria-label="Cerrar carrito">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-summary"><div><span>Total</span><strong id="cart-total">US$ 0,00</strong></div><p>Precios en dólares estadounidenses. Este carrito es una demostración; no se realizan pedidos ni cobros.</p><button class="button" id="continue-shopping">Seguir explorando <span aria-hidden="true">↗</span></button></div></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
