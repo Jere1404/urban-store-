@@ -254,3 +254,53 @@ body.cart-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* URBAN STORE 3.0 — herramientas de compra sobre el diseño editorial existente. */
+.shopping-tools { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 20px; }
+.catalog-views { display: flex; gap: 18px; align-items: center; }
+.view-button { border: 0; border-bottom: 2px solid transparent; background: none; padding: 12px 0; min-height: 44px; font-size: 12px; color: #666; }
+.view-button.active { border-bottom-color: #111; color: #111; }
+#favorite-count { margin-left: 6px; font-size: 10px; }
+.product-search { display: flex; flex-direction: column; gap: 7px; width: min(330px,100%); font-size: 9px; letter-spacing: 1px; }
+.product-search input { width: 100%; min-height: 44px; border: 1px solid #ccc; border-radius: 0; background: #fff; color: #111; padding: 11px 14px; font: inherit; font-size: 12px; letter-spacing: 0; }
+.product-search input:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+.favorite-button { position: absolute; right: 10px; top: 42px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #ddd; border-radius: 50%; background: #fffffff2; transition: background .2s, transform .2s; }
+.favorite-button svg { width: 19px; height: 19px; fill: transparent; stroke: #111; stroke-width: 1.5; }
+.favorite-button[aria-pressed='true'] { background: #111; border-color: #111; }
+.favorite-button[aria-pressed='true'] svg { fill: #fff; stroke: #fff; }
+.favorite-button:hover { transform: scale(1.06); }
+.catalog-empty { padding: 50px 20px; text-align: center; background: #f5f5f5; }
+.catalog-empty h3 { font-size: 23px; font-weight: 500; letter-spacing: -.7px; }
+.catalog-empty p { font-size: 13px; line-height: 1.8; color: #666; }
+.catalog-empty .button { margin: 22px auto 0; width: fit-content; }
+#variant-form fieldset { min-width: 0; padding: 0; margin: 0 0 18px; border: 0; }
+#variant-form legend { margin-bottom: 10px; font-size: 12px; font-weight: 600; }
+#variant-form legend > span { font-size: 10px; font-weight: 400; color: #666; margin-left: 10px; }
+.size-choices, .color-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.size-option, .color-option { position: relative; cursor: pointer; }
+.size-option input, .color-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.size-option > span { display: grid; place-items: center; min-width: 46px; min-height: 44px; border: 1px solid #ccc; font-size: 12px; transition: background .2s, color .2s; }
+.size-option input:checked + span { color: #fff; background: #111; border-color: #111; }
+.size-option input:focus-visible + span, .color-option:has(input:focus-visible) { outline: 2px solid #111; outline-offset: 3px; }
+.color-option { display: flex; align-items: center; min-height: 44px; gap: 8px; padding: 7px 10px; border: 1px solid #ddd; font-size: 11px; }
+.color-option:has(input:checked) { border: 2px solid #111; padding: 6px 9px; }
+.color-option:has(input:checked)::after { content: '✓'; font-size: 12px; }
+.color-swatch { width: 18px; height: 18px; border: 1px solid #999; border-radius: 50%; background: var(--swatch); }
+.variant-note { color: #666; font-size: 10px; line-height: 1.7; margin: 0 0 18px; }
+#quick-add { width: 100%; }
+#quick-status { min-height: 34px; }
+.cart-item .cart-variant { color: #333; font-size: 11px; margin-bottom: 8px; }
+.item-subtotal { display: flex; justify-content: space-between; gap: 8px; }
+.item-subtotal strong { color: #111; font-weight: 500; }
+.configure-item { min-height: 44px; padding: 10px 12px; background: #111; color: #fff; border: 0; font-size: 11px; margin-bottom: 10px; }
+@media (max-width: 560px) {
+  .shopping-tools { flex-direction: column; align-items: stretch; gap: 16px; }
+  .product-search { width: 100%; }
+  .catalog-views { gap: 24px; }
+  .favorite-button { top: 30px; right: 6px; }
+  .favorite-button svg { width: 17px; height: 17px; }
+  .catalog-empty { padding: 32px 16px; }
+  .catalog-empty h3 { font-size: 20px; }
+  .catalog-empty p { font-size: 12px; }
+  .quick-image { height: 220px; }
+}

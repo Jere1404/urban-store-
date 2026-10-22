@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="URBAN STORE: una tienda ficticia de ropa urbana. Explorá prendas esenciales y definí tu propio estilo.">
-  <title>URBAN STORE 2.0 — Esenciales con carácter</title>
+  <title>URBAN STORE 3.0 — Esenciales con carácter</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
-  <div class="announcement">ESTILO SIN REGLAS. ESENCIA SIN LÍMITES. <span>URBAN STORE 2.0 / 2026</span></div>
+  <div class="announcement">ESTILO SIN REGLAS. ESENCIA SIN LÍMITES. <span>URBAN STORE 3.0 / 2026</span></div>
   <header class="header">
     <a class="logo" href="#" aria-label="URBAN STORE, inicio">URBAN<span>STORE®</span></a>
     <nav aria-label="Navegación principal">
@@ -38,8 +38,16 @@
     <div class="manifesto" aria-label="Nuestra inspiración"><span>STREET CULTURE</span><span aria-hidden="true">/</span><span>EVERYDAY ESSENTIALS</span><span aria-hidden="true">/</span><span>YOUR OWN WAY</span><span aria-hidden="true">/</span><span>URBAN STORE</span></div>
     <section class="collection section" id="coleccion" aria-labelledby="collection-title">
       <div class="section-heading"><div><p class="eyebrow">EL UNIFORME DE TODOS LOS DÍAS</p><h2 id="collection-title">THE<br>ESSENTIALS<span> / 06</span></h2></div><p>Siluetas simples. Actitud sin límites.<br>Seis piezas para hacerlas tuyas.</p></div>
-      <div class="catalog-toolbar"><div class="filters" id="categorias" role="group" aria-label="Filtrar por categoría"><button class="filter active" data-category="Todos" aria-pressed="true">Todos</button><button class="filter" data-category="Remeras" aria-pressed="false">Remeras</button><button class="filter" data-category="Buzos" aria-pressed="false">Buzos</button><button class="filter" data-category="Pantalones" aria-pressed="false">Pantalones</button><button class="filter" data-category="Accesorios" aria-pressed="false">Accesorios</button></div><span id="product-count">06 PRODUCTOS</span></div>
+      <div class="shopping-tools">
+        <div class="catalog-views" role="group" aria-label="Vista del catálogo">
+          <button class="view-button active" id="show-all" aria-pressed="true">Colección</button>
+          <button class="view-button" id="show-favorites" aria-pressed="false">Favoritos <span id="favorite-count">0</span></button>
+        </div>
+        <label class="product-search" for="product-search"><span>Buscar productos</span><input type="search" id="product-search" placeholder="Nombre o categoría…" autocomplete="off"></label>
+      </div>
+      <div class="catalog-toolbar"><div class="filters" id="categorias" role="group" aria-label="Filtrar por categoría"><button class="filter active" data-category="Todos" aria-pressed="true">Todos</button><button class="filter" data-category="Remeras" aria-pressed="false">Remeras</button><button class="filter" data-category="Buzos" aria-pressed="false">Buzos</button><button class="filter" data-category="Pantalones" aria-pressed="false">Pantalones</button><button class="filter" data-category="Accesorios" aria-pressed="false">Accesorios</button></div><span id="product-count" role="status" aria-live="polite">06 PRODUCTOS</span></div>
       <div class="product-grid" id="products"></div>
+      <div class="catalog-empty" id="catalog-empty" hidden><h3 id="empty-title"></h3><p id="empty-description"></p><button class="button" id="reset-catalog">Ver toda la colección</button></div>
       <div class="collection-note"><span>06 PIEZAS / UNA ACTITUD</span><p>Diseño simple. Presencia propia.</p><a href="#nosotros">Conocé nuestra esencia <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></div>
       <noscript><p>Activá JavaScript para ver el catálogo y utilizar el carrito.</p></noscript>
     </section>
@@ -57,8 +65,12 @@
         <h2 id="quick-title"></h2>
         <p class="quick-price" id="quick-price"></p>
         <p id="quick-description"></p>
-        <p class="quick-note">Parte de THE ESSENTIALS / Colección 01</p>
-        <button class="button" id="quick-add">Agregar al carrito <span aria-hidden="true">+</span></button>
+        <form id="variant-form" novalidate>
+          <fieldset id="size-options"><legend>Talle <span>Elegí una opción</span></legend><div class="size-choices"></div></fieldset>
+          <fieldset id="color-options"><legend>Color <span id="selected-color"></span></legend><div class="color-choices"></div></fieldset>
+          <p class="variant-note" id="variant-note"></p>
+          <button class="button" id="quick-add" type="submit">Agregar al carrito <span aria-hidden="true">+</span></button>
+        </form>
         <button class="quick-cart-link" id="quick-cart">Ver carrito <span aria-hidden="true">→</span></button>
         <p id="quick-status" role="status" aria-live="polite"></p>
       </div>

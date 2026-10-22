@@ -1,4 +1,4 @@
-# URBAN STORE 2.0
+# URBAN STORE 3.0
 
 Tienda ficticia de ropa urbana creada con HTML, CSS y JavaScript puro, sin dependencias de ejecución ni pasos de compilación. Proyecto educativo: no realiza pedidos ni procesa pagos.
 
@@ -72,3 +72,39 @@ El rediseño se realizó sobre `main` actualizado, conservando los seis producto
 Cada tarjeta tiene un botón **Vista rápida**, visible también en pantallas táctiles. Abre un diálogo con imagen completa, nombre, categoría, precio y descripción; permite agregar al carrito y abrirlo con **Ver carrito**. Se cierra con el botón ×, Escape o un clic en el fondo. El diálogo conserva el foco del teclado y lo devuelve al botón de origen al cerrarse; el fondo no se desplaza mientras está abierto. Se respeta la preferencia de movimiento reducido.
 
 Se comprobaron en Chromium las seis vistas rápidas, contenido, precios, imágenes, agregado al carrito, transición al carrito, cierre, retorno del foco, límite de 99 unidades y uso desde filtros. También se verificaron las funciones existentes del carrito, carga de recursos y diseño sin desbordamiento en 320, 360, 390, 768, 1024 y 1440 px. No hay backend, pagos ni envíos.
+
+
+## URBAN STORE 3.0 — experiencia de compra
+
+Implementado sobre la última versión de `main`, conservando la portada editorial, los seis productos, sus nombres, categorías, precios y fotografías. No se agregaron dependencias, pagos ni envíos.
+
+### Talles y colores de demostración
+
+Las cuatro prendas ofrecen S, M, L y XL. El botón del catálogo abre la vista rápida y exige elegir un talle antes de agregar. Los accesorios se agregan directamente sin talle; desde su vista rápida también se puede elegir color.
+
+| Producto | Colores de demostración | Imagen de referencia |
+| --- | --- | --- |
+| Remera Oversize Essential | Negro, Gris | Negro |
+| Buzo Hoodie Core | Verde, Negro | Verde |
+| Pantalón Cargo Street | Arena, Negro | Arena |
+| Remera Boxy Studio | Blanco, Negro | Blanco (SVG) |
+| Gorra Urban Signature | Negro, Gris | Negro (SVG) |
+| Bandolera Daily | Negro, Gris | Negro (SVG) |
+
+Estas opciones no representan disponibilidad real, stock ni nuevas fotografías. La vista rápida lo avisa: la imagen existente no cambia al elegir otro color. Los radios permiten seleccionar opciones con teclado y muestran el estado seleccionado mediante contraste y borde.
+
+### Búsqueda y favoritos
+
+El buscador encuentra por nombre y categoría mientras se escribe; ignora mayúsculas, tildes y espacios sobrantes. Se combina con el filtro de categoría y la vista **Favoritos**. El corazón guarda o quita productos; la pestaña Favoritos permite consultarlos. Si no hay resultados o favoritos, se muestra un mensaje con una opción para volver a toda la colección.
+
+### Carrito por variante y persistencia
+
+Cada combinación de producto, talle y color ocupa una fila independiente; agregar la misma combinación suma unidades. Cada fila muestra fotografía, nombre, variantes, precio unitario, cantidad y subtotal. Los botones permiten aumentar, reducir y eliminar; el total se recalcula. El máximo es de 99 unidades por variante.
+
+El carrito se guarda en `urban-store-cart-v3` y los favoritos en `urban-store-favorites-v1` dentro del `localStorage` de este navegador y origen. Si no existe un carrito 3.0, se recupera el antiguo `urban-store-cart-v1` sin modificarlo: se conservan las cantidades, se usa el color de referencia y las prendas aparecen con **Talle pendiente**. **Elegir talle** completa la variante sin sumar una unidad adicional. Los accesorios recuperados no requieren talle. Las entradas inválidas se descartan y las combinaciones duplicadas se agrupan respetando el límite de 99 unidades. Si el almacenamiento está bloqueado, ambas funciones siguen disponibles en memoria durante la sesión, sin persistencia al recargar.
+
+### Verificación de 3.0
+
+Probado en Chromium a 1440 y 390 px: todos los filtros, búsqueda por nombre y categoría, tildes, combinación de criterios, estado sin coincidencias, favoritos y persistencia, selección obligatoria de talles, colores sin alterar fotos, accesorios, seis vistas rápidas, variantes independientes, subtotales, total, cantidades, eliminación y persistencia del carrito. También se probaron migración del carrito anterior, cancelación de la selección, límite de unidades, datos guardados corruptos y almacenamiento bloqueado. Se verificó la ausencia de desbordamiento horizontal en 320, 360, 390, 768, 1024 y 1440 px, además de la preferencia de movimiento reducido. Sin errores de JavaScript ni recursos HTTP fallidos.
+
+Para revisar: iniciá el servidor indicado arriba, entrá a Colección, buscá un producto, guardalo con el corazón y abrí Favoritos. En una prenda, elegí talle y color desde Vista rápida; agregá dos variantes y comprobá sus filas y total en el carrito. Recargá para verificar la persistencia.
